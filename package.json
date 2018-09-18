@@ -1,0 +1,24 @@
+{
+  "name": "follari-status-lite",
+  "version": "0.1",
+  "description": "A lightweight web service displaying available bikes at city bike stops in Turku.",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.16.3",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vppiet/follari-status-lite.git"
+  },
+  "author": "Joonas Heinonen, Teemu Järvi, Petteri Peltokangas, Ville Pietarinen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vppiet/follari-status-lite/issues"
+  },
+  "homepage": "https://github.com/vppiet/follari-status-lite#readme"
+}
