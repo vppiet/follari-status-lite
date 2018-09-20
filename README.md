@@ -3,7 +3,7 @@
 A lightweight web service displaying available bikes at
 city bike stops in Turku.
 
-Collaborators:
+## Collaborators:
 
 * [Joonas Heinonen](https://github.com/JoonasHeinonen)
 * [Teemu Järvi](https://github.com/tjarv17)
