@@ -1,8 +1,9 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 100%;
+  padding: 2em;
 }
 
-a {
-  color: #00B7FF;
+#mapid {
+  height: 60em;
+  width: 100em;
 }
