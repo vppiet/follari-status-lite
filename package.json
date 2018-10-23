@@ -1,60 +1,16 @@
 {
-  "name": "follari-status-lite",
-  "version": "0.0.1",
-  "description": "A lightweight web service displaying available bikes at city bike stops in Turku.",
-  "main": "server.js",
-  "dependencies": {
-    "express": "^4.16.3",
-    "request": "^2.88.0"
-  },
+  "name": "follaribussi",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "start": "node server.js"
+    "start": "node ./bin/www"
   },
-  "config": {
-    "port": "5050"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vppiet/follari-status-lite.git"
-  },
-  "contributors": [
-    {
-      "name": "Joonas Heinonen",
-      "email": "joonas.heinonen@edu.turkuamk.fi"
-    },
-    {
-      "name": "Teemu Järvi",
-      "email": "teemu.jarvi@edu.turkuamk.fi"
-    },
-    {
-      "name": "Petteri Peltokangas",
-      "email": "petteri.peltokangas@edu.turkuamk.fi"
-    },
-    {
-      "name": "Ville Pietarinen",
-      "email": "ville.pietarinen@edu.turkuamk.fi"
-    }
-  ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/vppiet/follari-status-lite/issues"
-  },
-  "homepage": "https://github.com/vppiet/follari-status-lite#readme",
-  "devDependencies": {
-    "eslint": "^5.6.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.14.0"
-  },
-  "eslintConfig": {
-    "extends": "airbnb-base",
-    "parserOptions": {
-      "ecmaVersion": 6
-    },
-    "rules": {
-      "no-unused-vars": 0,
-      "no-console": 0,
-      "func-names": 0,
-      "prefer-arrow-callback": 0
-    }
+  "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "ejs": "~2.5.7",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "morgan": "~1.9.0"
   }
 }
