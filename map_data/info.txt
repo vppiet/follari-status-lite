@@ -1,0 +1,10 @@
+Bounding box for Turku region
+
+topleft bound:           60.4961, 21.9527
+bottomright bound:       60.4289, 22.3225
+
+Overpass API: https://lz4.overpass-api.de/api/interpreter
+
+[out:json];node(60.4289,21.9527,60.4961,22.3225);out;
+
+https://lz4.overpass-api.de/api/interpreter?[out:json];node(60.4289,21.9527,60.4961,22.3225);out;
