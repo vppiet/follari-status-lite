@@ -7,11 +7,9 @@ function getRoute() {
         };
         let request = $.ajax(url, settings)
           .done((data) => {
-            console.log('Route fetched successfully.');
             resolve(data);
           })
           .fail((err) => { 
-            console.log('Error while fetching route.');
             reject(err)
           });
     });
@@ -33,22 +31,25 @@ $(document).ready(() => {
   let map = loadMap('mapid');
 
   let busRoute = getRoute()
-      .then((value) => {
-        let route = value[0].geometry;
-        
-        // Openroute service returns coordinates in [lat, long] format.
-        // In order to use them with Leaflet, we need to reverse them to [long, lat] format.
-        for (let point of route) {
-            point.reverse();
-        }
+    .then((value) => {
+      console.log('Route loaded successfully.');
+      let route = value[0].geometry;
+      
+      // Openroute service returns coordinates in [lat, long] format.
+      // In order to use them with Leaflet, we need to reverse them to [long, lat] format.
+      for (let point of route) {
+        point.reverse();
+      }
 
-        let routePolyline = L.polyline(route);
-        routePolyline.addTo(map);
-        map.fitBounds(routePolyline.getBounds());
+      let routePolyline = L.polyline(route);
+      routePolyline.addTo(map);
+      map.fitBounds(routePolyline.getBounds());
 
-        return value[0].geometry;
+      return value[0].geometry;
   })
   .catch((reason) => {
-      $('#mapid').text(reason);
+    let errorMessage = 'Error while loading route from server.';
+    console.log(errorMessage);
+    $('body').append(errorMessage);
   });
 });
