@@ -2,7 +2,7 @@ const { URL } = require('url');
 const request = require('request');
 
 // Returns an array of routes for two or more coordinate points
-exports.fethOpenRouteService = (apiKey, point1, point2) => {
+exports.fetchRoute = (apiKey, point1, point2) => {
     return new Promise((resolve, reject) => {
         let apiEndpoint = new URL('https://api.openrouteservice.org/directions');
         let queryStrings = {
@@ -17,7 +17,7 @@ exports.fethOpenRouteService = (apiKey, point1, point2) => {
             url:    apiEndpoint,
             qs:     queryStrings,
             json:   true
-        }
+        };
 
         request(options, (err, response, body) => {
             if (err) reject(err);
