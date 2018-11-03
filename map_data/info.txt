@@ -1,10 +1,6 @@
-Bounding box for Turku region
+BUS ROUTE
 
-topleft bound:           60.4961, 21.9527
-bottomright bound:       60.4289, 22.3225
+point A:        60.45445,22.24473      Turku
+point B:        60.4621,22.0208        Naantali
 
-Overpass API: https://lz4.overpass-api.de/api/interpreter
-
-[out:json];node(60.4289,21.9527,60.4961,22.3225);out;
-
-https://lz4.overpass-api.de/api/interpreter?[out:json];node(60.4289,21.9527,60.4961,22.3225);out;
+API endpoint:   https://api.openrouteservice.org/directions
