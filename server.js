@@ -35,7 +35,7 @@ app.get('/', (req, res, next) => {
 
 app.get('/route', (req, res, next) => {
     if (route) res.json(route);
-    else res.send(404, 'Error while loading route.');
+    else res.status(404).send('Error while loading route');
 });
 
 app.listen(configs.webserver.port, () => {
