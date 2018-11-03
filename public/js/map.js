@@ -1,10 +1,54 @@
-$(document).ready(function() {
-    let centerCoords = L.latLng(60.476, 22.138);
+// Fetches route from web server
+function getRoute() {
+    return new Promise((resolve, reject) => {
+        let url = document.location.href + 'route';
+        let settings = {
+            dataType: 'json'
+        };
+        let request = $.ajax(url, settings)
+          .done((data) => {
+            console.log('Route fetched successfully.');
+            resolve(data);
+          })
+          .fail((err) => { 
+            console.log('Error while fetching route.');
+            reject(err)
+          });
+    });
+}
 
-    let mymap = L.map('mapid').setView(centerCoords, 13);
+// Creates a Leaflet map into target element
+function loadMap(targetID) {
+  let myMap = L.map(targetID);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-        maxZoom: 18
-    }).addTo(mymap);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+    maxZoom: 18
+  }).addTo(myMap);
+
+  return myMap;
+}
+
+$(document).ready(() => {
+  let map = loadMap('mapid');
+
+  let busRoute = getRoute()
+      .then((value) => {
+        let route = value[0].geometry;
+        
+        // Openroute service returns coordinates in [lat, long] format.
+        // In order to use them with Leaflet, we need to reverse them to [long, lat] format.
+        for (let point of route) {
+            point.reverse();
+        }
+
+        let routePolyline = L.polyline(route);
+        routePolyline.addTo(map);
+        map.fitBounds(routePolyline.getBounds());
+
+        return value[0].geometry;
+  })
+  .catch((reason) => {
+      $('#mapid').text(reason);
+  });
 });
