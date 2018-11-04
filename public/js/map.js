@@ -41,7 +41,13 @@ $(document).ready(() => {
         point.reverse();
       }
 
-      let routePolyline = L.polyline(route);
+      let options = {
+        color:        '#EBAC00',
+        interactive:  false,
+        weight:       5
+      }
+      
+      let routePolyline = L.polyline(route, options);
       routePolyline.addTo(map);
       map.fitBounds(routePolyline.getBounds());
 
