@@ -1,9 +1,19 @@
-# Föllari Status Lite
+# Föllaribussi
 
-A lightweight web service displaying available bikes at
-city bike stops in Turku.
+## Introduction
 
-## Collaborators:
+This project implements web page which consists of a map with a bus route and surrounding points of interests. Node.js web server is used to communicate with OpenRouteService API and passing data to clients.
+
+The project is part of a course assignment in Turku University of Applied Sciences.
+
+## Deployment
+
+1. Clone the repository.
+2. Install dependencies with `npm install` command.
+3. Copy config.json to the root folder of the repository.
+4. Deploy the web application with `npm start` command.
+
+## Collaborators
 
 * [Joonas Heinonen](https://github.com/JoonasHeinonen)
 * [Teemu Järvi](https://github.com/tjarv17)
