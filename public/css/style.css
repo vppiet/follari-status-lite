@@ -7,3 +7,19 @@ body {
     height:     40em;
     width:      60em;
 }
+
+.yht_tiedot {
+    position: absolute;
+    top: 55%;
+    left: 10px;
+    line-height: 0.4;
+    font-size: 12px;
+}
+
+.p_palvelu {
+    position: absolute;
+    top: 70%;
+    left: 10px;
+    line-height: 0.4;
+    font-size: 12px;
+}
