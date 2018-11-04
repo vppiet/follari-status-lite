@@ -45,8 +45,8 @@ $(document).ready(() => {
         color:        '#EBAC00',
         interactive:  false,
         weight:       5
-      }
-      
+      };
+
       let routePolyline = L.polyline(route, options);
       routePolyline.addTo(map);
       map.fitBounds(routePolyline.getBounds());
