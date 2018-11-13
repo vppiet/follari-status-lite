@@ -1,5 +1,18 @@
+html, body {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
 body {
-    font-size:  100%;
+    margin: 0;
+    overflow: auto;
+    height: 100%;
 }
 
 #mapid {
@@ -8,18 +21,51 @@ body {
     width:      60em;
 }
 
-.yht_tiedot {
-    position: absolute;
-    top: 55%;
-    left: 10px;
-    line-height: 0.4;
-    font-size: 12px;
+body, p, h1, h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
 }
 
-.p_palvelu {
+.content-box {
+    padding: 1em;
+    box-sizing: border-box;
+}
+
+.footer {
+    background-image: url("images/footer_background.png");
+    clear: both;
     position: absolute;
-    top: 70%;
-    left: 10px;
-    line-height: 0.4;
-    font-size: 12px;
+    left: 0;
+    min-height: 60px;
+    width: 100%;
+    color: white;
+}
+
+@media (max-width: 769px) {
+    .footer {
+      position: relative;
+    }
+}
+
+.contact-info {
+    padding: 1em;
+    margin: 0;
+    display: inline-grid;
+}
+
+.contact-info, p {
+    color: white;
+    text-align: left;
+    font-size: 16px;
+    height: 100%;
+}
+
+.contact-info, h2 {
+    color: #f2ad00;
+    font-size: 24px;
+}
+
+h1, h2 {
+    font-weight: bold;
+    overflow: inline;
 }
