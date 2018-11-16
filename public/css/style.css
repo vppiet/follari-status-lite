@@ -19,8 +19,8 @@ body {
     border:     1px solid #000;
     height:     40em;
     width:      60em;
-    margin-bottom: 0.5em;
-    margin-left: 0.5em;
+    margin-bottom: 20px;
+    margin-left: 20px;
 }
 
 body, p, h1, h2 {
@@ -35,7 +35,6 @@ body, p, h1, h2 {
 
 .footer {
     background-color: #333;
-    margin-left: 0;
     clear: both;
     position: absolute;
     left: 0;
