@@ -16,18 +16,24 @@ let pointsOfInterest = undefined;
 console.log('Fetching route...');
 apiQueries.fetchRoute(openRouteServiceApikey, routePoints)
     .then((apiRouteResponse) => {
-        console.log('Route fetched successfully');
+        try {
+            // Copy route to global memory object and use that object
+            // to pass route to client with reversed latitudes and longitudes
+            // since Leaflet uses reversed coordinates in respect of API response.
+            route = [...apiRouteResponse[0].geometry];
 
-        // Copy route to global memory object and use that object
-        // to pass route to client with reversed latitudes and longitudes
-        // since Leaflet uses reversed coordinates in respect of API response.
-        route = [...apiRouteResponse[0].geometry];
+            let pointCount = 0;
+            for (let point of route) {
+                point.reverse();
+                pointCount += 1;
+            }
 
-        for (let point of route) {
-          point.reverse();
+            console.log('Route (' + pointCount + ' nodes) fetched successfully');
+            return apiRouteResponse[0].geometry.join();
         }
-
-        return apiRouteResponse[0].geometry.join();
+        catch (err) {
+            throw new Error(err);
+        }
     })
     // If we don't have route, we can't fetch Point of Interests
     .catch((reason) => {
@@ -43,10 +49,9 @@ apiQueries.fetchRoute(openRouteServiceApikey, routePoints)
             // DEBUGGING RESPONSE: SAVE TO FILE
             // let overpassResponse = JSON.parse(apiPOIResponse);
             // fs.writeFileSync('overpassResponse.json', JSON.stringify(overpassResponse));
-            console.log('Points of interest fetched successfully');
             try {
                 pointsOfInterest = JSON.parse(apiPOIResponse).elements;
-
+                
                 // iteration of horror
                 for (let category in pois) {
                     for (let point of pointsOfInterest) {
@@ -59,6 +64,7 @@ apiQueries.fetchRoute(openRouteServiceApikey, routePoints)
                         }
                     }
                 }
+                console.log('Points of interest (' + pointsOfInterest.length + ' nodes) fetched successfully');
             }
             catch(err) {
                 throw new Error(err);
