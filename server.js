@@ -2,7 +2,6 @@ const config = require('./readConfig');
 const apiQueries = require('./apiQueries');
 const express = require('express');
 const path = require('path');
-const fs = require('fs');
 
 // Load configs
 const configs = config.readConfig('./config.json');
@@ -17,7 +16,7 @@ let pointsOfInterest = undefined;
 console.log('Fetching route...');
 apiQueries.fetchRoute(openRouteServiceApikey, routePoints)
     .then((apiRouteResponse) => {
-        console.log('Fetched route successfully');
+        console.log('Route fetched successfully');
 
         // Copy route to global memory object and use that object
         // to pass route to client with reversed latitudes and longitudes
@@ -44,9 +43,22 @@ apiQueries.fetchRoute(openRouteServiceApikey, routePoints)
             // DEBUGGING RESPONSE: SAVE TO FILE
             // let overpassResponse = JSON.parse(apiPOIResponse);
             // fs.writeFileSync('overpassResponse.json', JSON.stringify(overpassResponse));
-            console.log('Fetched points of interest successfully')
+            console.log('Points of interest fetched successfully');
             try {
                 pointsOfInterest = JSON.parse(apiPOIResponse).elements;
+
+                // iteration of horror
+                for (let category in pois) {
+                    for (let point of pointsOfInterest) {
+                        for (let key in pois[category]) {
+                            if (point['tags'].hasOwnProperty(key)) {
+                                for (let tag of pois[category][key]) {
+                                    if (point['tags'][key] == tag) point['category'] = category;
+                                }
+                            }
+                        }
+                    }
+                }
             }
             catch(err) {
                 throw new Error(err);
