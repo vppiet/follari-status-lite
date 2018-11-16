@@ -19,6 +19,7 @@ body {
     border:     1px solid #000;
     height:     40em;
     width:      60em;
+    margin-top: 20px;
     margin-bottom: 20px;
     margin-left: 20px;
 }
@@ -26,6 +27,10 @@ body {
 .topnav {
     overflow: hidden;
     background-color: #666;
+}
+
+.topnav a {
+    padding: 14px 16px;
 }
 
 .topnav a.active {
