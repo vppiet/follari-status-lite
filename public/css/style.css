@@ -19,6 +19,7 @@ body {
     border:     1px solid #000;
     height:     40em;
     width:      60em;
+    padding: 1em;
 }
 
 body, p, h1, h2 {
