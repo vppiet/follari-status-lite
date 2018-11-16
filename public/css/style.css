@@ -23,15 +23,14 @@ body {
     margin-left: 20px;
 }
 
-#infobox {
-    display: inline-block;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #000;
-    height: 500px;
-    width: 300px;
-    margin-bottom: 20px;
-    margin-left: 20px;
+.topnav {
+    overflow: hidden;
+    background-color: #666;
+}
+
+.topnav a.active {
+    background-color: #f2ad00;
+    color: white;
 }
 
 body, p, h1, h2 {
