@@ -15,7 +15,7 @@ function getServiceData() {
     });
 }
 
-// Creates a Leaflet map into target element
+// Creates a Leaflet map with OpenStreetMap baselayer into target element
 function loadMap(targetID) {
   let myMap = L.map(targetID);
 
@@ -33,7 +33,8 @@ $(document).ready(() => {
   let busRoute = getServiceData()
   .then((data) => {
     console.log('Service data loaded successfully');
-    console.log(data);
+    console.log('Route:',JSON.stringify(data.route));
+    console.log('Points of Interest:',JSON.stringify(data.pointsOfInterest));
 
     return data;
   })
@@ -59,14 +60,25 @@ $(document).ready(() => {
 
     for (let point of data.pointsOfInterest) {
       let pointMarker = L.marker(L.latLng(point.lat, point.lon), {icon: L.icon({iconUrl: 'img/'+point.category+'.png', iconSize: L.point(26, 26)})});
+
       // remember to fix popup info
       pointMarker.bindPopup(JSON.stringify(point, null, 2));
+
       // DEBUG addTo -> IMPLEMENT FEATUREGROUPS & CONTROL LAYER GODDAMIT
-      pointMarker.addTo(map);
+      // pointMarker.addTo(map);
       if (!markers.hasOwnProperty(point.category)) { markers[point.category] = []; }
       markers[point.category].push(pointMarker);
     }
 
-    console.log(markers);
-  })
+    // Create marker group layers
+    let layerGroups = {};
+    for (let category in markers) {
+      layerGroups[category] = L.layerGroup(markers[category]);
+      layerGroups[category].addTo(map);
+    }
+
+    // Create control overlay and add marker layer groups
+    let control = L.control.layers(null, layerGroups, { 'collapsed': false });
+    control.addTo(map);
+  });
 });
