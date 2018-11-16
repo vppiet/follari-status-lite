@@ -36,7 +36,7 @@ body, p, h1, h2 {
 .footer {
     background-color: #333;
     clear: both;
-    position: absolute;
+    position: fixed;
     left: 0;
     min-height: 60px;
     width: 100%;
