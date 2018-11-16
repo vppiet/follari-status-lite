@@ -1,20 +1,60 @@
 const config = require('./readConfig');
-const openRouteService = require('./fetch-openroute');
+const apiQueries = require('./apiQueries');
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 
 // Load configs
 const configs = config.readConfig('./config.json');
+const openRouteServiceApikey = configs.openrouteservice.apikey;
+const routePoints = [configs.route.pointA, configs.route.pointB];
+const pois = configs.pois;
 
-// Fetch initial route
-let route;
-openRouteService.fetchRoute(configs.openrouteservice.apikey, configs.route.pointA, configs.route.pointB)
-    .then((value) => {
-        console.log('Fetched route from OpenRouteService successfully.');
-        route = value;
+// Fetch route and Points of Interests around route
+let route = undefined;
+let pointsOfInterest = undefined;
+
+console.log('Fetching route...');
+apiQueries.fetchRoute(openRouteServiceApikey, routePoints)
+    .then((apiRouteResponse) => {
+        console.log('Fetched route successfully');
+
+        // Copy route to global memory object and use that object
+        // to pass route to client with reversed latitudes and longitudes
+        // since Leaflet uses reversed coordinates in respect of API response.
+        route = [...apiRouteResponse[0].geometry];
+
+        for (let point of route) {
+          point.reverse();
+        }
+
+        return apiRouteResponse[0].geometry.join();
     })
+    // If we don't have route, we can't fetch Point of Interests
     .catch((reason) => {
-        console.log('Error while fetching route from OpenRouteService:', reason);
+        console.log('Error while fetching route:', reason);
+    })
+    .then((polyline) => {
+        // After receiving route, fetch Point of Interests
+        let radius = configs.radius;
+
+        console.log('Fetching points of interest around the route...');
+        apiQueries.fetchPointsOfInterest(polyline, radius, pois)
+        .then((apiPOIResponse) => {
+            // DEBUGGING RESPONSE: SAVE TO FILE
+            // let overpassResponse = JSON.parse(apiPOIResponse);
+            // fs.writeFileSync('overpassResponse.json', JSON.stringify(overpassResponse));
+            console.log('Fetched points of interest successfully')
+            try {
+                pointsOfInterest = JSON.parse(apiPOIResponse).elements;
+            }
+            catch(err) {
+                throw new Error(err);
+            }
+        })
+        .catch((reason) => {
+            console.log('Error while fetching points of interest:', reason);
+        });
     });
 
 // Initialize Express
@@ -33,11 +73,19 @@ app.get('/', (req, res, next) => {
     });
 });
 
-app.get('/route', (req, res, next) => {
-    if (route) res.json(route);
-    else res.status(404).send('Error while loading route');
+app.get('/servicedata', (req, res, next) => {
+    if (route && pointsOfInterest) {
+        let data = {
+            route:              route,
+            pointsOfInterest:   pointsOfInterest
+        };
+        res.status(200).json(data);
+    }
+    else {
+        res.status(500).send('Error while loading service data');
+    }
 });
 
 app.listen(configs.webserver.port, () => {
-    console.log(`Web server is listening on port ${configs.webserver.port}.`);
+    console.log(`Web server is listening on port ${configs.webserver.port}`);
 });
