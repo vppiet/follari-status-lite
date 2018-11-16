@@ -1,7 +1,7 @@
-// Fetches route from web server
-function getRoute() {
+// Fetches service data from server
+function getServiceData() {
     return new Promise((resolve, reject) => {
-        let url = document.location.href + 'route';
+        let url = document.location.href + 'servicedata';
         let settings = {
             dataType: 'json'
         };
@@ -30,32 +30,27 @@ function loadMap(targetID) {
 $(document).ready(() => {
   let map = loadMap('mapid');
 
-  let busRoute = getRoute()
-    .then((value) => {
-      console.log('Route loaded successfully.');
-      let route = value[0].geometry;
-      
-      // Openroute service returns coordinates in [lat, long] format.
-      // In order to use them with Leaflet, we need to reverse them to [long, lat] format.
-      for (let point of route) {
-        point.reverse();
-      }
+  let busRoute = getServiceData()
+    .then((data) => {
+      console.log('Service data loaded successfully');
+      console.log(data);
 
+      // Add route to map
       let options = {
         color:        '#EBAC00',
         interactive:  false,
         weight:       5
       };
 
-      let routePolyline = L.polyline(route, options);
+      let routePolyline = L.polyline(data.route, options);
       routePolyline.addTo(map);
       map.fitBounds(routePolyline.getBounds());
 
-      return value[0].geometry;
+      return data;
   })
   .catch((reason) => {
-    let errorMessage = 'Error while loading route from server.';
+    let errorMessage = 'Error while loading service data from server';
     console.log(errorMessage);
-    $('body').append(errorMessage);
+    $('#mapid').html(errorMessage);
   });
 });
