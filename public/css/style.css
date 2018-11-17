@@ -101,17 +101,23 @@ h1 {
     .footer {
       position: relative;
     }
-}
-
-@media (max-width: 769px) {
     #mapid {
-      width: 40em;
+        width: 40em;
     }
 }
 
 @media (max-width: 400px) {
     #mapid {
       width: 25em;
+    }
+}
+
+@media (max-width: 350px) {
+    #mapid {
+      width: 20em;
+    }
+    .content-box {
+        width: 20em;
     }
 }
 
