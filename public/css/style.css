@@ -80,13 +80,6 @@ h1 {
     display: inline-grid;
 }
 
-.contact-info, p {
-    color: white;
-    text-align: left;
-    font-size: 16px;
-    height: 100%;
-}
-
 a {
     text-decoration: none;
     font-size: 16px;
@@ -96,6 +89,13 @@ a {
 .contact-info, h2 {
     color: #f2ad00;
     font-size: 24px;
+}
+
+p.white-text {
+    color: white;
+    text-align: left;
+    font-size: 16px;
+    height: 100%;
 }
 
 h1, h2 {
