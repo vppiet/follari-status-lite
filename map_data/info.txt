@@ -1,6 +1,0 @@
-BUS ROUTE
-
-point A:        60.45445,22.24473      Turku
-point B:        60.4621,22.0208        Naantali
-
-API endpoint:   https://api.openrouteservice.org/directions
