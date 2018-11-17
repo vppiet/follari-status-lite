@@ -53,6 +53,7 @@ body, p, h1, h2 {
 
 p {
     text-align: justify;
+    margin: none;
 }
 
 h3 {
