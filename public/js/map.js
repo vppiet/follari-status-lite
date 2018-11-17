@@ -78,7 +78,7 @@ $(document).ready(() => {
     }
 
     // Create control overlay and add marker layer groups
-    let control = L.control.layers(null, layerGroups, { 'collapsed': false });
+    let control = L.control.layers(null, layerGroups, { collapsed: false, sortLayers: true });
     control.addTo(map);
   });
 });
