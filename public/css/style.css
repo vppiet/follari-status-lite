@@ -109,6 +109,12 @@ h1 {
     }
 }
 
+@media (max-width: 400px) {
+    #mapid {
+      width: 30em;
+    }
+}
+
 .contact-info {
     padding: 1em;
     margin: 0;
