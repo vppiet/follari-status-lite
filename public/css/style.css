@@ -48,7 +48,7 @@ body {
 
 body, p, h1, h2 {
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
+    color: black;
 }
 
 p {
@@ -56,7 +56,6 @@ p {
 }
 
 h3 {
-    color: white;
     font-size: 20px;
     text-align: center;
     border-bottom-style: solid;
@@ -72,8 +71,7 @@ h3 {
     box-sizing: border-box;
     border-style: solid;
     border-width: 1px;
-    border-color: #cc9100;
-    background-color: #f2ad00;
+    border-color: #666;
     width: 300px;
     height: 30em;
     margin: 20px;
@@ -128,6 +126,7 @@ p.white-text {
     font-size: 16px;
     height: 100%;
 }
+
 
 h1, h2 {
     font-weight: bold;
