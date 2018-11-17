@@ -29,8 +29,6 @@ body {
 .topnav {
     overflow: hidden;
     background-color: #666;
-    opacity: 0.5;
-    filter: alpha(opacity=50);
 }
 
 .topnav a {
