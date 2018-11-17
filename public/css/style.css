@@ -58,6 +58,7 @@ h3 {
 }
 
 .content-box {
+    display: inline-flex;
     color: black;
     padding: 1em;
     box-sizing: border-box;
