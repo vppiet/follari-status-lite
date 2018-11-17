@@ -17,12 +17,13 @@ body {
 
 #mapid {
     float: left;
-    border:     1px solid #000;
+    border:     1px solid #666;
     height:     40em;
     width:      60em;
     margin-top: 20px;
     margin-bottom: 20px;
     margin-left: 20px;
+    box-shadow: 1px 1px 2px 2px #888888;
 }
 
 .topnav {
@@ -50,11 +51,15 @@ body, p, h1, h2 {
     color: black;
 }
 
+p {
+    text-align: justify;
+}
+
 h3 {
     font-size: 20px;
     text-align: center;
     border-bottom-style: solid;
-    border-bottom-color: #000;
+    border-bottom-color: #666;
     border-bottom-width: 1px;
 }
 
@@ -66,10 +71,11 @@ h3 {
     box-sizing: border-box;
     border-style: solid;
     border-width: 1px;
-    border-color: #000;
+    border-color: #666;
     width: 300px;
     height: 30em;
     margin: 20px;
+    box-shadow: 1px 1px 2px 2px #888888;
 }
 
 h1 {
