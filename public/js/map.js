@@ -27,6 +27,29 @@ function loadMap(targetID) {
   return myMap;
 }
 
+// Create marker popups
+function popupMaker(point) {
+  let pointPopup = $('<table/>').append('<thead><th>Field</th><th>Value</th></thead>');
+  pointPopup.find('thead').after('<tbody/>');
+
+  function markerInfoIterator(markerInfo) {
+    for (let field in markerInfo) {
+      if (markerInfo.hasOwnProperty(field)) {
+        if (typeof markerInfo[field] == 'object') {
+          markerInfoIterator(markerInfo[field]);
+        }
+        else {
+          pointPopup.find('tbody').append(`<tr><th>${field}</th><td>${markerInfo[field]}</td></tr>`);
+        }
+      }
+    }
+  }
+
+  markerInfoIterator(point);
+
+return pointPopup[0];
+}
+
 $(document).ready(() => {
   let map = loadMap('mapid');
 
@@ -61,8 +84,7 @@ $(document).ready(() => {
     for (let point of data.pointsOfInterest) {
       let pointMarker = L.marker(L.latLng(point.lat, point.lon), {icon: L.icon({iconUrl: 'img/'+point.category+'.png', iconSize: L.point(26, 26)})});
 
-      // remember to fix popup info
-      pointMarker.bindPopup(JSON.stringify(point, null, 2));
+      pointMarker.bindPopup(popupMaker(point));
 
       // DEBUG addTo -> IMPLEMENT FEATUREGROUPS & CONTROL LAYER GODDAMIT
       // pointMarker.addTo(map);
