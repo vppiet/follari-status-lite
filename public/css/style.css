@@ -150,3 +150,16 @@ h1, h2 {
     font-weight: bold;
     overflow: inline;
 }
+
+table {
+    border-collapse:    collapse;
+    width:              100%;
+}
+
+thead {
+    background-color:   #f4f4f4;
+}
+
+th, td {
+    padding:        0.4em;
+}
