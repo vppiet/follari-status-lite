@@ -1,0 +1,39 @@
+{
+    "route": {
+        "pointA": "22.24473,60.45445",
+        "pointB": "21.92413,60.46213"
+    },
+    "pois": {
+        "culture": {
+            "amenity":  [
+                "place_of_worship"
+            ],
+            "tourism":  [
+                "attraction",
+                "artwork"
+            ],
+            "historic": [
+                "archaeological_site",
+                "memorial",
+                "ruins"
+            ]
+        },
+        "nature": {
+            "natural":  [
+                "beach"
+            ]
+        },
+        "other": {
+            "tourism":  [
+                "information",
+                "viewpoint",
+                "theme_park"
+            ],
+            "amenity": [
+                "toilets",
+                "drinking_water"
+            ]
+        }
+    },
+    "radius":   1000.0
+}
