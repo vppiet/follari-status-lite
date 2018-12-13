@@ -104,7 +104,7 @@ app.get('/servicedata', (req, res, next) => {
     }
 });
 
-let port = parseInt(process.env.PORT, 10) | 8080;
+let port = process.env.PORT | 8080;
 
 app.listen(port, () => {
     console.log(`Web server is listening on port ${port}`);
