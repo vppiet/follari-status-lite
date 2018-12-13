@@ -10,8 +10,9 @@ The project is part of a course assignment in Turku University of Applied Scienc
 
 1. Clone the repository.
 2. Install dependencies with `npm install` command.
-3. Copy config.json to the root folder of the repository.
-4. Deploy the web application with `npm start` command.
+3. Get an [OpenRouteService](https://openrouteservice.org/) API key.
+4. Set the API key as an environmental variable to `OPENROUTESERVICEAPIKEY`.
+5. Deploy the web application with `npm start` command.
 
 ## Collaborators
 
