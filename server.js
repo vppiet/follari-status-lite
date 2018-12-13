@@ -5,7 +5,7 @@ const path = require('path');
 
 // Load configs
 const configs = config.readConfig('./config.json');
-const openRouteServiceApikey = configs.openrouteservice.apikey;
+const openRouteServiceApikey = process.env.OPENROUTESERVICEAPIKEY;
 const routePoints = [configs.route.pointA, configs.route.pointB];
 const pois = configs.pois;
 
@@ -104,6 +104,8 @@ app.get('/servicedata', (req, res, next) => {
     }
 });
 
-app.listen(configs.webserver.port, () => {
-    console.log(`Web server is listening on port ${configs.webserver.port}`);
+let port = parseInt(process.env.PORT, 10) | 80;
+
+app.listen(port, () => {
+    console.log(`Web server is listening on port ${port}`);
 });
